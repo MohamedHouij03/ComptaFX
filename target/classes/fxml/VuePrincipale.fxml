@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.MainController"
+            fx:id="mainContainer" styleClass="main-container">
+    
+    <!-- Barre de navigation -->
+    <top>
+        <VBox>
+            <!-- Menu Bar -->
+            <MenuBar fx:id="menuBar" styleClass="menu-bar">
+                <Menu text="Affichage">
+                    <MenuItem fx:id="refreshMenuItem" text="Actualiser" onAction="#handleRefresh"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem fx:id="zoomInMenuItem" text="Zoom Avant" onAction="#handleZoomIn"/>
+                    <MenuItem fx:id="zoomOutMenuItem" text="Zoom Arrière" onAction="#handleZoomOut"/>
+                    <MenuItem fx:id="zoomResetMenuItem" text="Zoom Normal" onAction="#handleZoomReset"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem fx:id="fullScreenMenuItem" text="Plein Écran" onAction="#handleFullScreen"/>
+                </Menu>
+                <Menu text="Aide">
+                    <MenuItem fx:id="helpMenuItem" text="Documentation" onAction="#handleHelp"/>
+                    <MenuItem text="Raccourcis Clavier" onAction="#handleKeyboardShortcuts"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="À Propos" onAction="#handleAbout"/>
+                </Menu>
+            </MenuBar>
+            
+            <!-- ToolBar -->
+            <ToolBar styleClass="toolbar">
+                <Button text="📊 Tableau de Bord" onAction="#showDashboard" styleClass="toolbar-btn"/>
+                <Separator/>
+                <Button text="📝 Écritures" onAction="#showJournalEntries" styleClass="toolbar-btn"/>
+                <Button text="📄 Factures" onAction="#showInvoices" styleClass="toolbar-btn"/>
+                <Separator/>
+                <Button text="👤 Clients" onAction="#showClients" styleClass="toolbar-btn"/>
+                <Button text="🏢 Fournisseurs" onAction="#showFournisseurs" styleClass="toolbar-btn"/>
+                <Separator/>
+                <Button text="🏦 Trésorerie" onAction="#showTresorerie" styleClass="toolbar-btn"/>
+                <Button text="📈 Rapports" onAction="#showRapports" styleClass="toolbar-btn"/>
+                <Separator/>
+                <Button text="📚 Plan Comptable" onAction="#showPlanComptable" styleClass="toolbar-btn"/>
+                <Separator orientation="VERTICAL"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="⚙ Paramètres" onAction="#showParametres" styleClass="toolbar-btn"/>
+            </ToolBar>
+        </VBox>
+    </top>
+    
+    <!-- Menu latéral gauche -->
+    <left>
+        <VBox fx:id="sideMenu" styleClass="side-menu" spacing="5" prefWidth="220">
+            <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+            
+            <Label text="NAVIGATION" styleClass="menu-header"/>
+            <Button text="🏠 Tableau de Bord" onAction="#showDashboard" styleClass="menu-btn" maxWidth="Infinity"/>
+
+            <Label text="COMPTABILITÉ" styleClass="menu-header"/>
+            <Button text="📝 Écritures Comptables" onAction="#showJournalEntries" styleClass="menu-btn" maxWidth="Infinity"/>
+            <Button text="📈 Rapports Financiers" onAction="#showRapports" styleClass="menu-btn" maxWidth="Infinity"/>
+
+            <Label text="TRANSACTIONS" styleClass="menu-header"/>
+            <Button text="📄 Factures" onAction="#showInvoices" styleClass="menu-btn" maxWidth="Infinity"/>
+            <Button text="🏦 Trésorerie" onAction="#showTresorerie" styleClass="menu-btn" maxWidth="Infinity"/>
+
+            <Label text="TIERS" styleClass="menu-header"/>
+            <Button text="👤 Clients" onAction="#showClients" styleClass="menu-btn" maxWidth="Infinity"/>
+            <Button text="🏢 Fournisseurs" onAction="#showFournisseurs" styleClass="menu-btn" maxWidth="Infinity"/>
+
+            <Label text="RÉFÉRENCE" styleClass="menu-header"/>
+            <Button text="📚 Plan Comptable Tunisien" onAction="#showPlanComptable" styleClass="menu-btn" maxWidth="Infinity"/>
+
+            <Region VBox.vgrow="ALWAYS"/>
+
+            <Separator/>
+            <Button text="⚙ Paramètres" onAction="#showParametres" styleClass="menu-btn" maxWidth="Infinity"/>
+            <Label fx:id="clientLabel" text="Société par défaut" styleClass="client-label"/>
+        </VBox>
+    </left>
+    
+    <!-- Zone de contenu principal avec chat AI -->
+    <center>
+        <SplitPane fx:id="mainSplitPane" dividerPositions="0.75" styleClass="main-split-pane">
+            <!-- Contenu principal -->
+            <StackPane fx:id="contentArea" styleClass="content-area">
+                <!-- Tableau de bord chargé par défaut -->
+                <VBox spacing="20">
+                    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+                    
+                    <Label text="Tableau de Bord" styleClass="page-title"/>
+                    
+                    <!-- Cartes KPI -->
+                    <HBox spacing="20">
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <Label text="Total Créances" styleClass="kpi-label"/>
+                            <Label fx:id="totalReceivablesLabel" text="0,000 TND" styleClass="kpi-value"/>
+                        </VBox>
+                        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                            <Label text="Total Dettes" styleClass="kpi-label"/>
+                            <Label fx:id="totalPayablesLabel" text="0,000 TND" styleClass="kpi-value"/>
+                        </VBox>
+                    </HBox>
+                    
+                    <!-- Tableaux d'activité récente -->
+                    <HBox spacing="20">
+                        <VBox styleClass="table-card" HBox.hgrow="ALWAYS">
+                            <Label text="Factures Récentes" styleClass="table-title"/>
+                            <TableView fx:id="recentInvoicesTable" prefHeight="200">
+                                <columns>
+                                    <TableColumn text="Numéro" prefWidth="100"/>
+                                    <TableColumn text="Client" prefWidth="150"/>
+                                    <TableColumn text="Montant" prefWidth="100"/>
+                                    <TableColumn text="Statut" prefWidth="80"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                        <VBox styleClass="table-card" HBox.hgrow="ALWAYS">
+                            <Label text="Écritures Récentes" styleClass="table-title"/>
+                            <TableView fx:id="recentEntriesTable" prefHeight="200">
+                                <columns>
+                                    <TableColumn text="N° Écriture" prefWidth="100"/>
+                                    <TableColumn text="Date" prefWidth="100"/>
+                                    <TableColumn text="Description" prefWidth="200"/>
+                                    <TableColumn text="Montant" prefWidth="100"/>
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </StackPane>
+            
+            <!-- Panneau de chat AI - chargé programmatiquement -->
+            <VBox fx:id="chatPanelContainer" styleClass="chat-panel" prefWidth="400"/>
+        </SplitPane>
+    </center>
+    
+    <!-- Barre de statut en bas -->
+    <bottom>
+        <HBox styleClass="status-bar" spacing="20">
+            <padding><Insets top="5" right="10" bottom="5" left="10"/></padding>
+            <Label fx:id="statusLabel" text="Prêt"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label fx:id="dateLabel" text=""/>
+            <Label text="ComptaFX v1.0 | Devise: TND"/>
+        </HBox>
+    </bottom>
+</BorderPane>

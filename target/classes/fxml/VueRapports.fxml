@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ControleurRapports"
+      spacing="15" styleClass="page-content">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Rapports Financiers" styleClass="page-title"/>
+
+    <!-- Filtres de période -->
+    <HBox spacing="15" alignment="CENTER_LEFT" styleClass="table-card">
+        <padding><Insets top="10" right="15" bottom="10" left="15"/></padding>
+        <Label text="Période:" style="-fx-font-weight: bold;"/>
+        <DatePicker fx:id="dateDebutPicker" promptText="Date début" prefWidth="140"/>
+        <Label text="au"/>
+        <DatePicker fx:id="dateFinPicker" promptText="Date fin" prefWidth="140"/>
+        <ComboBox fx:id="periodeRapideCombo" promptText="Période rapide" prefWidth="150"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Générer les Rapports" onAction="#handleGenerer" styleClass="primary-btn"/>
+    </HBox>
+
+    <!-- Onglets de rapports -->
+    <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS" tabClosingPolicy="UNAVAILABLE">
+
+        <!-- Onglet Balance -->
+        <Tab text="Balance de Vérification">
+            <VBox spacing="10">
+                <padding><Insets top="10" right="0" bottom="0" left="0"/></padding>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <TextField fx:id="balanceSearchField" promptText="Filtrer par compte..." prefWidth="200"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    <Label fx:id="balanceTotauxLabel" text="" style="-fx-font-weight: bold;"/>
+                </HBox>
+                <TableView fx:id="balanceTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="balCodeCol" text="Code Compte" prefWidth="110"/>
+                        <TableColumn fx:id="balNomCol" text="Intitulé" prefWidth="250"/>
+                        <TableColumn fx:id="balDebitCol" text="Total Débit" prefWidth="130"/>
+                        <TableColumn fx:id="balCreditCol" text="Total Crédit" prefWidth="130"/>
+                        <TableColumn fx:id="balSoldeCol" text="Solde" prefWidth="130"/>
+                    </columns>
+                    <placeholder><Label text="Aucune donnée. Générez les rapports."/></placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Onglet Factures -->
+        <Tab text="Synthèse Factures">
+            <VBox spacing="10">
+                <padding><Insets top="10" right="0" bottom="0" left="0"/></padding>
+                <!-- Résumé par statut -->
+                <HBox spacing="15">
+                    <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                        <Label text="Créances (non payées)" styleClass="kpi-label"/>
+                        <Label fx:id="creancesLabel" text="0,000 TND" styleClass="kpi-value"/>
+                    </VBox>
+                    <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                        <Label text="Dettes (non payées)" styleClass="kpi-label"/>
+                        <Label fx:id="dettesLabel" text="0,000 TND" styleClass="kpi-value"/>
+                    </VBox>
+                    <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                        <Label text="Factures en retard" styleClass="kpi-label"/>
+                        <Label fx:id="retardLabel" text="0" styleClass="kpi-value"/>
+                    </VBox>
+                    <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+                        <Label text="CA Période (TND)" styleClass="kpi-label"/>
+                        <Label fx:id="caLabel" text="0,000 TND" styleClass="kpi-value"/>
+                    </VBox>
+                </HBox>
+                <TableView fx:id="facturesRapportTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="frStatutCol" text="Statut" prefWidth="120"/>
+                        <TableColumn fx:id="frNbCol" text="Nombre" prefWidth="80"/>
+                        <TableColumn fx:id="frMontantCol" text="Montant Total" prefWidth="140"/>
+                        <TableColumn fx:id="frPayeCol" text="Payé" prefWidth="130"/>
+                        <TableColumn fx:id="frResteCol" text="Reste Dû" prefWidth="130"/>
+                    </columns>
+                    <placeholder><Label text="Aucune donnée."/></placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Onglet Clients -->
+        <Tab text="Situation Clients">
+            <VBox spacing="10">
+                <padding><Insets top="10" right="0" bottom="0" left="0"/></padding>
+                <TableView fx:id="clientsRapportTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="crNomCol" text="Client" prefWidth="200"/>
+                        <TableColumn fx:id="crNbFactCol" text="Nb Factures" prefWidth="100"/>
+                        <TableColumn fx:id="crTotalCol" text="Total Facturé" prefWidth="140"/>
+                        <TableColumn fx:id="crPayeCol" text="Total Payé" prefWidth="130"/>
+                        <TableColumn fx:id="crSoldeCol" text="Solde Dû" prefWidth="130"/>
+                        <TableColumn fx:id="crEtatCol" text="État" prefWidth="100"/>
+                    </columns>
+                    <placeholder><Label text="Aucune donnée."/></placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+        <!-- Onglet Fournisseurs -->
+        <Tab text="Situation Fournisseurs">
+            <VBox spacing="10">
+                <padding><Insets top="10" right="0" bottom="0" left="0"/></padding>
+                <TableView fx:id="fournisseursRapportTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                    <columns>
+                        <TableColumn fx:id="frNomFCol" text="Fournisseur" prefWidth="200"/>
+                        <TableColumn fx:id="frNbFactFCol" text="Nb Factures" prefWidth="100"/>
+                        <TableColumn fx:id="frTotalFCol" text="Total Facturé" prefWidth="140"/>
+                        <TableColumn fx:id="frPayeFCol" text="Total Payé" prefWidth="130"/>
+                        <TableColumn fx:id="frSoldeFCol" text="Solde Dû" prefWidth="130"/>
+                        <TableColumn fx:id="frEtatFCol" text="État" prefWidth="100"/>
+                    </columns>
+                    <placeholder><Label text="Aucune donnée."/></placeholder>
+                </TableView>
+            </VBox>
+        </Tab>
+
+    </TabPane>
+
+    <!-- Barre de statut -->
+    <HBox styleClass="page-status-bar">
+        <Label fx:id="statusLabel" text="Prêt"/>
+    </HBox>
+</VBox>

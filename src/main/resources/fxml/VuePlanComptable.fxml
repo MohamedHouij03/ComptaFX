@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ControleurPlanComptable"
+      spacing="20" styleClass="page-content">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+    
+    <Label text="Le Plan Comptable Tunisien" styleClass="page-title"/>
+    
+    <!-- Class selection dropdown -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Sélectionner une classe:" styleClass="section-title"/>
+        <ComboBox fx:id="classComboBox" prefWidth="500" onAction="#handleClassSelection"/>
+    </HBox>
+    
+    <!-- Table displaying account classes -->
+    <TableView fx:id="planComptableTable" VBox.vgrow="ALWAYS" styleClass="data-table" editable="false">
+        <columns>
+            <TableColumn fx:id="codeColumn" text="Code" prefWidth="100"/>
+            <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="600"/>
+        </columns>
+        <placeholder>
+            <Label text="Chargement du plan comptable..."/>
+        </placeholder>
+    </TableView>
+    
+    <!-- Status bar -->
+    <HBox spacing="20" styleClass="page-status-bar">
+        <Label fx:id="statusLabel" text="Documentation de référence - Données non modifiables"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+</VBox>
+

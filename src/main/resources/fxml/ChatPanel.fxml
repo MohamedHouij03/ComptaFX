@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ChatController"
+      styleClass="chat-panel" prefWidth="400">
+    
+    <!-- Header -->
+    <HBox styleClass="chat-header" alignment="CENTER_LEFT">
+        <padding><Insets top="10" right="10" bottom="10" left="15"/></padding>
+        <Label text="🤖 Assistant AI" styleClass="chat-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button fx:id="clearChatButton" text="🗑️" onAction="#handleClearChat" styleClass="chat-icon-btn"/>
+        <Button fx:id="toggleChatButton" text="◀" onAction="#handleToggleChat" styleClass="chat-icon-btn"/>
+    </HBox>
+    
+    <!-- Messages Area -->
+    <ScrollPane fx:id="messagesScrollPane" styleClass="chat-messages-scroll" fitToWidth="true" vbarPolicy="AS_NEEDED">
+        <VBox fx:id="messagesContainer" styleClass="chat-messages-container" spacing="10">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+        </VBox>
+    </ScrollPane>
+    
+    <!-- Input Area -->
+    <VBox styleClass="chat-input-area" spacing="5">
+        <padding><Insets top="10" right="10" bottom="10" left="10"/></padding>
+        
+        <!-- Status Label -->
+        <Label fx:id="statusLabel" text="Prêt" styleClass="chat-status"/>
+        
+        <!-- Input Field -->
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <TextArea fx:id="messageInput" styleClass="chat-input" prefRowCount="3" wrapText="true"
+                      onKeyPressed="#handleKeyPressed" promptText="Tapez votre message..."/>
+            <Button fx:id="sendButton" text="Envoyer" onAction="#handleSendMessage" styleClass="chat-send-btn"/>
+        </HBox>
+        
+        <!-- Quick Actions -->
+        <HBox spacing="5" alignment="CENTER_LEFT">
+            <Button text="📋 Code" onAction="#handleShowCode" styleClass="chat-quick-btn"/>
+            <Button text="📁 Structure" onAction="#handleShowStructure" styleClass="chat-quick-btn"/>
+            <Button text="❓ Aide" onAction="#handleShowHelp" styleClass="chat-quick-btn"/>
+        </HBox>
+    </VBox>
+</VBox>
+

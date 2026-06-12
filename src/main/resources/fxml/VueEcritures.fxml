@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ControleurEcritures"
+      spacing="15" styleClass="page-content">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+    
+    <Label text="Écritures Comptables" styleClass="page-title"/>
+    
+    <!-- Barre d'outils -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="➕ Nouvelle Écriture" onAction="#handleNewEntry" styleClass="primary-btn"/>
+        <Button text="✏️ Modifier" onAction="#handleEditEntry" styleClass="secondary-btn"/>
+        <Button text="🗑️ Supprimer" onAction="#handleDeleteEntry" styleClass="danger-btn"/>
+        <Separator orientation="VERTICAL"/>
+        <Region HBox.hgrow="ALWAYS"/>
+    </HBox>
+    
+    <!-- Panneau divisé pour écritures et lignes -->
+    <SplitPane orientation="VERTICAL" VBox.vgrow="ALWAYS" dividerPositions="0.6">
+        <!-- Tableau des écritures -->
+        <VBox>
+            <TableView fx:id="entriesTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="entryNumberColumn" text="N° Écriture" prefWidth="120"/>
+                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="descriptionColumn" text="Description" prefWidth="300"/>
+                    <TableColumn fx:id="debitColumn" text="Débit" prefWidth="100"/>
+                    <TableColumn fx:id="creditColumn" text="Crédit" prefWidth="100"/>
+                    <TableColumn fx:id="statusColumn" text="Statut" prefWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune écriture comptable trouvée."/>
+                </placeholder>
+            </TableView>
+        </VBox>
+        
+        <!-- Tableau des lignes d'écriture -->
+        <VBox spacing="5">
+            <Label text="Lignes de l'Écriture" styleClass="section-title"/>
+            <TableView fx:id="linesTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="lineAccountColumn" text="Compte" prefWidth="150"/>
+                    <TableColumn fx:id="lineDescColumn" text="Description" prefWidth="250"/>
+                    <TableColumn fx:id="lineDebitColumn" text="Débit" prefWidth="100"/>
+                    <TableColumn fx:id="lineCreditColumn" text="Crédit" prefWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="Sélectionnez une écriture pour voir les lignes."/>
+                </placeholder>
+            </TableView>
+        </VBox>
+    </SplitPane>
+    
+    <!-- Totaux et barre de statut -->
+    <HBox spacing="20" styleClass="page-status-bar">
+        <Label fx:id="statusLabel" text="Prêt"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Label text="Total Débits:"/>
+        <Label fx:id="totalDebitsLabel" text="0,000 TND" styleClass="total-label"/>
+        <Label text="Total Crédits:"/>
+        <Label fx:id="totalCreditsLabel" text="0,000 TND" styleClass="total-label"/>
+    </HBox>
+</VBox>

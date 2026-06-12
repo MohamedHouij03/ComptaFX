@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ControleurTresorerie"
+      spacing="15" styleClass="page-content">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Trésorerie &amp; Comptes Bancaires" styleClass="page-title"/>
+
+    <!-- KPI Trésorerie -->
+    <HBox spacing="15">
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Total Trésorerie" styleClass="kpi-label"/>
+            <Label fx:id="totalTresorerieLabel" text="0,000 TND" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Comptes Actifs" styleClass="kpi-label"/>
+            <Label fx:id="comptesActifsLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Entrées (mois)" styleClass="kpi-label"/>
+            <Label fx:id="entreesLabel" text="0,000 TND" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Sorties (mois)" styleClass="kpi-label"/>
+            <Label fx:id="sortiesLabel" text="0,000 TND" styleClass="kpi-value"/>
+        </VBox>
+    </HBox>
+
+    <!-- Zone principale : comptes (gauche) + transactions (droite) -->
+    <HBox spacing="15" VBox.vgrow="ALWAYS">
+
+        <!-- Comptes bancaires -->
+        <VBox spacing="10" prefWidth="350" minWidth="300">
+            <Label text="Comptes Bancaires" styleClass="table-title"/>
+            <HBox spacing="8">
+                <Button text="Ajouter Compte" onAction="#handleAjouterCompte" styleClass="primary-btn"/>
+                <Button text="Modifier" onAction="#handleModifierCompte" styleClass="secondary-btn"/>
+                <Button text="Supprimer" onAction="#handleSupprimerCompte" styleClass="danger-btn"/>
+            </HBox>
+            <TableView fx:id="comptesTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="banqueColumn" text="Banque" prefWidth="110"/>
+                    <TableColumn fx:id="intituleColumn" text="Intitulé" prefWidth="130"/>
+                    <TableColumn fx:id="soldeColumn" text="Solde" prefWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucun compte."/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+        <!-- Transactions du compte sélectionné -->
+        <VBox spacing="10" HBox.hgrow="ALWAYS">
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label fx:id="compteSelectionneLabel" text="Sélectionnez un compte" styleClass="table-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button text="Nouvelle Transaction" onAction="#handleNouvelleTransaction" styleClass="primary-btn"/>
+                <Button text="Supprimer" onAction="#handleSupprimerTransaction" styleClass="danger-btn"/>
+            </HBox>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <TextField fx:id="searchTransactionField" promptText="Rechercher transaction..." prefWidth="200"/>
+                <ComboBox fx:id="filtreTypeTransactionCombo" promptText="Tous types" prefWidth="140"/>
+            </HBox>
+            <TableView fx:id="transactionsTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+                <columns>
+                    <TableColumn fx:id="dateTransCol" text="Date" prefWidth="90"/>
+                    <TableColumn fx:id="libelleTransCol" text="Libellé" prefWidth="200"/>
+                    <TableColumn fx:id="typeTransCol" text="Type" prefWidth="110"/>
+                    <TableColumn fx:id="referenceTransCol" text="Référence" prefWidth="100"/>
+                    <TableColumn fx:id="debitTransCol" text="Débit" prefWidth="90"/>
+                    <TableColumn fx:id="creditTransCol" text="Crédit" prefWidth="90"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune transaction pour ce compte."/>
+                </placeholder>
+            </TableView>
+        </VBox>
+
+    </HBox>
+
+    <!-- Barre de statut -->
+    <HBox styleClass="page-status-bar">
+        <Label fx:id="statusLabel" text="Prêt"/>
+    </HBox>
+</VBox>

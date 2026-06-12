@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ControleurTableauBord"
+      spacing="20" styleClass="page-content">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+    
+    <Label text="Tableau de Bord" styleClass="page-title"/>
+    
+    <!-- Cartes KPI -->
+    <HBox spacing="20">
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Total Factures" styleClass="kpi-label"/>
+            <Label fx:id="totalInvoicesLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Total Écritures" styleClass="kpi-label"/>
+            <Label fx:id="totalEntriesLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+    </HBox>
+    
+    <!-- Activité récente -->
+    <HBox spacing="20">
+        <VBox styleClass="table-card" HBox.hgrow="ALWAYS">
+            <Label text="Factures Récentes" styleClass="table-title"/>
+            <TableView prefHeight="150">
+                <columns>
+                    <TableColumn text="N° Facture" prefWidth="100"/>
+                    <TableColumn text="Client" prefWidth="150"/>
+                    <TableColumn text="Montant" prefWidth="100"/>
+                    <TableColumn text="Échéance" prefWidth="100"/>
+                    <TableColumn text="Statut" prefWidth="80"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune facture récente"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+        <VBox styleClass="table-card" HBox.hgrow="ALWAYS">
+            <Label text="Écritures Récentes" styleClass="table-title"/>
+            <TableView prefHeight="150">
+                <columns>
+                    <TableColumn text="N° Écriture" prefWidth="100"/>
+                    <TableColumn text="Date" prefWidth="100"/>
+                    <TableColumn text="Description" prefWidth="180"/>
+                    <TableColumn text="Montant" prefWidth="100"/>
+                </columns>
+                <placeholder>
+                    <Label text="Aucune écriture récente"/>
+                </placeholder>
+            </TableView>
+        </VBox>
+    </HBox>
+</VBox>

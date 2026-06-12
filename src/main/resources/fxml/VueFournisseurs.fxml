@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ControleurFournisseurs"
+      spacing="15" styleClass="page-content">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Gestion des Fournisseurs" styleClass="page-title"/>
+
+    <!-- Statistiques rapides -->
+    <HBox spacing="15">
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Total Fournisseurs" styleClass="kpi-label"/>
+            <Label fx:id="totalFournisseursLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Fournisseurs Actifs" styleClass="kpi-label"/>
+            <Label fx:id="fournisseursActifsLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Délai Paiement Moy." styleClass="kpi-label"/>
+            <Label fx:id="delaiMoyenLabel" text="-- jours" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Encours Fournisseurs" styleClass="kpi-label"/>
+            <Label fx:id="encoursTotalLabel" text="0,000 TND" styleClass="kpi-value"/>
+        </VBox>
+    </HBox>
+
+    <!-- Barre d'outils -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Nouveau Fournisseur" onAction="#handleNouveauFournisseur" styleClass="primary-btn"/>
+        <Button text="Modifier" onAction="#handleModifierFournisseur" styleClass="secondary-btn"/>
+        <Button text="Supprimer" onAction="#handleSupprimerFournisseur" styleClass="danger-btn"/>
+        <Separator orientation="VERTICAL"/>
+        <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="220"/>
+        <ComboBox fx:id="filtreCategorieCombo" promptText="Toutes catégories" prefWidth="160"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Actualiser" onAction="#handleActualiser" styleClass="secondary-btn"/>
+    </HBox>
+
+    <!-- Tableau des fournisseurs -->
+    <TableView fx:id="fournisseursTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="codeColumn" text="Code" prefWidth="90"/>
+            <TableColumn fx:id="nomColumn" text="Nom / Raison Sociale" prefWidth="200"/>
+            <TableColumn fx:id="typeColumn" text="Type" prefWidth="100"/>
+            <TableColumn fx:id="categorieColumn" text="Catégorie" prefWidth="120"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="150"/>
+            <TableColumn fx:id="telephoneColumn" text="Téléphone" prefWidth="110"/>
+            <TableColumn fx:id="delaiColumn" text="Délai (j)" prefWidth="80"/>
+            <TableColumn fx:id="soldeColumn" text="Solde" prefWidth="110"/>
+            <TableColumn fx:id="actifColumn" text="Statut" prefWidth="80"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucun fournisseur trouvé. Cliquez sur 'Nouveau Fournisseur' pour commencer."/>
+        </placeholder>
+    </TableView>
+
+    <!-- Barre de statut -->
+    <HBox styleClass="page-status-bar">
+        <Label fx:id="statusLabel" text="Prêt"/>
+    </HBox>
+</VBox>

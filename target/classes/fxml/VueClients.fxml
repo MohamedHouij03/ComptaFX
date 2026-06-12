@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ControleurClients"
+      spacing="15" styleClass="page-content">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Gestion des Clients" styleClass="page-title"/>
+
+    <!-- Statistiques rapides -->
+    <HBox spacing="15">
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Total Clients" styleClass="kpi-label"/>
+            <Label fx:id="totalClientsLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Clients Actifs" styleClass="kpi-label"/>
+            <Label fx:id="clientsActifsLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Entreprises" styleClass="kpi-label"/>
+            <Label fx:id="entreprisesLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+        <VBox styleClass="kpi-card" HBox.hgrow="ALWAYS">
+            <Label text="Particuliers" styleClass="kpi-label"/>
+            <Label fx:id="particuliersLabel" text="0" styleClass="kpi-value"/>
+        </VBox>
+    </HBox>
+
+    <!-- Barre d'outils -->
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Button text="Nouveau Client" onAction="#handleNouveauClient" styleClass="primary-btn"/>
+        <Button text="Modifier" onAction="#handleModifierClient" styleClass="secondary-btn"/>
+        <Button text="Supprimer" onAction="#handleSupprimerClient" styleClass="danger-btn"/>
+        <Separator orientation="VERTICAL"/>
+        <TextField fx:id="searchField" promptText="Rechercher..." prefWidth="220"/>
+        <ComboBox fx:id="filtreTypeCombo" promptText="Tous les types" prefWidth="150"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Actualiser" onAction="#handleActualiser" styleClass="secondary-btn"/>
+    </HBox>
+
+    <!-- Tableau des clients -->
+    <TableView fx:id="clientsTable" VBox.vgrow="ALWAYS" styleClass="data-table">
+        <columns>
+            <TableColumn fx:id="codeColumn" text="Code" prefWidth="90"/>
+            <TableColumn fx:id="nomColumn" text="Nom / Raison Sociale" prefWidth="200"/>
+            <TableColumn fx:id="typeColumn" text="Type" prefWidth="100"/>
+            <TableColumn fx:id="emailColumn" text="Email" prefWidth="170"/>
+            <TableColumn fx:id="telephoneColumn" text="Téléphone" prefWidth="110"/>
+            <TableColumn fx:id="villeColumn" text="Ville" prefWidth="100"/>
+            <TableColumn fx:id="soldColumn" text="Solde" prefWidth="110"/>
+            <TableColumn fx:id="actifColumn" text="Statut" prefWidth="80"/>
+        </columns>
+        <placeholder>
+            <Label text="Aucun client trouvé. Cliquez sur 'Nouveau Client' pour commencer."/>
+        </placeholder>
+    </TableView>
+
+    <!-- Barre de statut -->
+    <HBox styleClass="page-status-bar">
+        <Label fx:id="statusLabel" text="Prêt"/>
+    </HBox>
+</VBox>

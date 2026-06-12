@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<VBox xmlns:fx="http://javafx.com/fxml" fx:controller="com.comptafx.presentation.ControleurParametres"
+      spacing="20" styleClass="page-content">
+    <padding><Insets top="20" right="20" bottom="20" left="20"/></padding>
+
+    <Label text="Paramètres de l'Application" styleClass="page-title"/>
+
+    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="content-scroll">
+        <VBox spacing="20">
+            <padding><Insets top="5" right="5" bottom="10" left="5"/></padding>
+
+            <!-- Informations Société -->
+            <VBox styleClass="table-card" spacing="12">
+                <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                <Label text="Informations de la Société" styleClass="table-title"/>
+                <GridPane hgap="15" vgap="10">
+                    <Label text="Raison Sociale :" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-min-width: 160;"/>
+                    <TextField fx:id="raisonSocialeField" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="280" promptText="Nom de votre société"/>
+
+                    <Label text="Matricule Fiscal :" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="matriculeFiscalField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="280" promptText="MF / RNE"/>
+
+                    <Label text="Adresse :" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="adresseField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="280" promptText="Adresse complète"/>
+
+                    <Label text="Ville :" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="villeField" GridPane.columnIndex="1" GridPane.rowIndex="3" prefWidth="280" promptText="Ville"/>
+
+                    <Label text="Téléphone :" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="telephoneField" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="280" promptText="+216 XX XXX XXX"/>
+
+                    <Label text="Email :" GridPane.columnIndex="0" GridPane.rowIndex="5" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="emailField" GridPane.columnIndex="1" GridPane.rowIndex="5" prefWidth="280" promptText="contact@societe.tn"/>
+
+                    <Label text="Site Web :" GridPane.columnIndex="0" GridPane.rowIndex="6" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="siteWebField" GridPane.columnIndex="1" GridPane.rowIndex="6" prefWidth="280" promptText="www.societe.tn"/>
+                </GridPane>
+            </VBox>
+
+            <!-- Paramètres Comptables -->
+            <VBox styleClass="table-card" spacing="12">
+                <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                <Label text="Paramètres Comptables" styleClass="table-title"/>
+                <GridPane hgap="15" vgap="10">
+                    <Label text="Devise principale :" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-min-width: 160;"/>
+                    <ComboBox fx:id="deviseCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="150"/>
+
+                    <Label text="Taux TVA par défaut :" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <TextField fx:id="tauxTvaField" prefWidth="80" promptText="19"/>
+                        <Label text="&#37;"/>
+                    </HBox>
+
+                    <Label text="Préfixe factures :" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="prefixeFactureField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="150" promptText="FAC"/>
+
+                    <Label text="Délai paiement déf. :" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="5" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <TextField fx:id="delaiPaiementField" prefWidth="80" promptText="30"/>
+                        <Label text="jours"/>
+                    </HBox>
+
+                    <Label text="Exercice fiscal :" GridPane.columnIndex="0" GridPane.rowIndex="4" style="-fx-font-weight: bold;"/>
+                    <ComboBox fx:id="exerciceFiscalCombo" GridPane.columnIndex="1" GridPane.rowIndex="4" prefWidth="200"/>
+                </GridPane>
+            </VBox>
+
+            <!-- Paramètres Base de Données -->
+            <VBox styleClass="table-card" spacing="12">
+                <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                <Label text="Connexion Base de Données" styleClass="table-title"/>
+                <GridPane hgap="15" vgap="10">
+                    <Label text="Hôte :" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-min-width: 160;"/>
+                    <TextField fx:id="dbHostField" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="280" promptText="localhost"/>
+
+                    <Label text="Port :" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="dbPortField" GridPane.columnIndex="1" GridPane.rowIndex="1" prefWidth="100" promptText="3306"/>
+
+                    <Label text="Base de données :" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <TextField fx:id="dbNameField" GridPane.columnIndex="1" GridPane.rowIndex="2" prefWidth="280" promptText="comptafx"/>
+
+                    <Label text="Statut connexion :" GridPane.columnIndex="0" GridPane.rowIndex="3" style="-fx-font-weight: bold;"/>
+                    <HBox spacing="10" GridPane.columnIndex="1" GridPane.rowIndex="3" alignment="CENTER_LEFT">
+                        <Label fx:id="dbStatusLabel" text="Non vérifié" style="-fx-text-fill: #f57c00;"/>
+                        <Button text="Tester la connexion" onAction="#handleTesterConnexion" styleClass="secondary-btn"/>
+                    </HBox>
+                </GridPane>
+            </VBox>
+
+            <!-- Apparence -->
+            <VBox styleClass="table-card" spacing="12">
+                <padding><Insets top="15" right="20" bottom="15" left="20"/></padding>
+                <Label text="Apparence &amp; Interface" styleClass="table-title"/>
+                <GridPane hgap="15" vgap="10">
+                    <Label text="Langue :" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold; -fx-min-width: 160;"/>
+                    <ComboBox fx:id="langueCombo" GridPane.columnIndex="1" GridPane.rowIndex="0" prefWidth="150"/>
+
+                    <Label text="Afficher panneau IA :" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-weight: bold;"/>
+                    <CheckBox fx:id="afficherIACheckBox" GridPane.columnIndex="1" GridPane.rowIndex="1" text="Activer le panneau assistant IA"/>
+
+                    <Label text="Notifications :" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-weight: bold;"/>
+                    <CheckBox fx:id="notificationsCheckBox" GridPane.columnIndex="1" GridPane.rowIndex="2" text="Activer les notifications de rappel"/>
+                </GridPane>
+            </VBox>
+
+            <!-- Boutons d'action -->
+            <HBox spacing="15" alignment="CENTER_RIGHT">
+                <Button text="Réinitialiser" onAction="#handleReinitialiser" styleClass="secondary-btn"/>
+                <Button text="Enregistrer les Paramètres" onAction="#handleEnregistrer" styleClass="primary-btn"/>
+            </HBox>
+
+        </VBox>
+    </ScrollPane>
+
+    <!-- Barre de statut -->
+    <HBox styleClass="page-status-bar">
+        <Label fx:id="statusLabel" text="Prêt"/>
+    </HBox>
+</VBox>
