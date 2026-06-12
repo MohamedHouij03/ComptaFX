@@ -24,7 +24,11 @@
 
 ## 📽️ Demo
 
-> 🎬 **[Watch the Demo Video](#)** ← *paste your link here*
+Watch the Demo Video:
+
+https://github.com/user-attachments/assets/46a789dd-de0b-48d3-a921-f1f28c5cdd9f
+
+
 
 ---
 
