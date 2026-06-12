@@ -36,7 +36,6 @@ https://github.com/user-attachments/assets/46a789dd-de0b-48d3-a921-f1f28c5cdd9f
 
 - [🎯 About](#-about)
 - [✨ Features](#-features)
-- [🖥️ Screenshots](#️-screenshots)
 - [🏗️ Architecture](#️-architecture)
 - [🗃️ Data Model](#️-data-model)
 - [🚀 Quick Start](#-quick-start)
@@ -133,28 +132,6 @@ The project also demonstrates modern Java development best practices:
 - Connects to **Ollama** locally (configurable model)
 - Automatic fallback to cloud if Ollama is unavailable
 - Accounting context pre-loaded in the system prompt
-
----
-
-## 🖥️ Screenshots
-
-> *Add your screenshots to `docs/screenshots/` and update the paths below.*
-
-<div align="center">
-
-| Dashboard | Client Management |
-|:-:|:-:|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Clients](docs/screenshots/clients.png) |
-
-| Treasury | Financial Reports |
-|:-:|:-:|
-| ![Treasury](docs/screenshots/tresorerie.png) | ![Reports](docs/screenshots/rapports.png) |
-
-| Invoice Entry | Settings |
-|:-:|:-:|
-| ![Invoices](docs/screenshots/factures.png) | ![Settings](docs/screenshots/parametres.png) |
-
-</div>
 
 ---
 
