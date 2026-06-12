@@ -622,7 +622,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND.
 [![GitHub](https://img.shields.io/badge/GitHub-MohamedHouij03-181717?style=flat-square&logo=github)](https://github.com/MohamedHouij03)
 [![Email](https://img.shields.io/badge/Email-mohamed.houij700%40gmail.com-EA4335?style=flat-square&logo=gmail&logoColor=white)](mailto:mohamed.houij700@gmail.com)
 
-*Built with ❤️ in Java · Tunis, Tunisia*
 
 </div>
 
